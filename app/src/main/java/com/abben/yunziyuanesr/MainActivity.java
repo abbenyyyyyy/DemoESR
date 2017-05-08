@@ -7,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.abben.yunziyuanesr.fragment.FirstFragment;
-import com.abben.yunziyuanesr.fragment.FourthFragment;
-import com.abben.yunziyuanesr.fragment.SecondFragment;
-import com.abben.yunziyuanesr.fragment.ThirdFragment;
-import com.abben.yunziyuanesr.modle.Movie;
+import com.abben.yunziyuanesr.fragment.AllMoviesFragment;
+import com.abben.yunziyuanesr.fragment.ChineseMoviesFragment;
+import com.abben.yunziyuanesr.fragment.EuramericanMoviesFragment;
+import com.abben.yunziyuanesr.fragment.JanpanAndKoreaMoviesFragment;
+import com.abben.yunziyuanesr.bean.Movie;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -42,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private void initView(){
         main_viewpager = (ViewPager) findViewById(R.id.main_viewpager);
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new FirstFragment());
-        fragments.add(new SecondFragment());
-        fragments.add(new ThirdFragment());
-        fragments.add(new FourthFragment());
+        fragments.add(new AllMoviesFragment());
+        fragments.add(new EuramericanMoviesFragment());
+        fragments.add(new JanpanAndKoreaMoviesFragment());
+        fragments.add(new ChineseMoviesFragment());
 
         CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(),fragments);
         main_viewpager.setAdapter(customFragmentPagerAdapter);

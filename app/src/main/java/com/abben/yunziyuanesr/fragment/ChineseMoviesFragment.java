@@ -14,7 +14,7 @@ import com.abben.yunziyuanesr.R;
  * Created by Administrator on 2017/5/3.
  */
 
-public class FourthFragment extends Fragment{
+public class ChineseMoviesFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

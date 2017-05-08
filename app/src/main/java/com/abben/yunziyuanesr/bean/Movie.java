@@ -1,4 +1,4 @@
-package com.abben.yunziyuanesr.modle;
+package com.abben.yunziyuanesr.bean;
 
 /**
  * Created by Administrator on 2017/5/2.

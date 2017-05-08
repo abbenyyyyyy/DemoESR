@@ -9,19 +9,18 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.abben.yunziyuanesr.CustomRecycleViewAdapter;
 import com.abben.yunziyuanesr.MainActivity;
 import com.abben.yunziyuanesr.R;
-import com.abben.yunziyuanesr.modle.Movie;
+import com.abben.yunziyuanesr.bean.Movie;
 
 import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017/5/3.
  */
-public class FirstFragment extends Fragment {
+public class AllMoviesFragment extends Fragment {
     private ArrayList<Movie> movies;
 
 

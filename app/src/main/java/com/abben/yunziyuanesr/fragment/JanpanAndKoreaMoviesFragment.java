@@ -14,7 +14,7 @@ import com.abben.yunziyuanesr.R;
  * Created by Administrator on 2017/5/3.
  */
 
-public class ThirdFragment extends Fragment{
+public class JanpanAndKoreaMoviesFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
