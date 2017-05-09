@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 /**
- * Created by Administrator on 2017/5/8.
+ * Created by abben on 2017/5/8.
  */
 
 public interface MoviesApi {
 
     @GET("{type}.json")
-    Observable<ArrayList<Movie>> fetchAllMovies(@Part String type);
+    Observable<ArrayList<Movie>> fetchMovies(@Path("type") String type);
 
 }

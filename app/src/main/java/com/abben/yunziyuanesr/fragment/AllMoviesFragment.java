@@ -9,36 +9,80 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.abben.yunziyuanesr.CustomRecycleViewAdapter;
-import com.abben.yunziyuanesr.MainActivity;
 import com.abben.yunziyuanesr.R;
 import com.abben.yunziyuanesr.bean.Movie;
+import com.abben.yunziyuanesr.contract.AllMoviesContract;
 
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2017/5/3.
+ * Created by abben on 2017/5/3.
  */
-public class AllMoviesFragment extends Fragment {
-    private ArrayList<Movie> movies;
-
+public class AllMoviesFragment extends Fragment implements AllMoviesContract.View{
+    private AllMoviesContract.Presenter mPresenter;
+    private CustomRecycleViewAdapter customRecycleViewAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first,container,false);
-
-        initView(view);
-        return view;
+        return initView(inflater, container);
     }
 
-    private void initView(View view){
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.subscribeAllMovies();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.clearCompositeDisposable();
+    }
+
+    private View initView(LayoutInflater inflater, ViewGroup container){
+        View view = inflater.inflate(R.layout.fragment_first,container,false);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_recyclerview);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         DisplayMetrics dm = getResources().getDisplayMetrics();
-        CustomRecycleViewAdapter customRecycleViewAdapter = new CustomRecycleViewAdapter(getContext(),((MainActivity)getActivity()).getAllMovies()
-        ,dm.widthPixels);
+        customRecycleViewAdapter = new CustomRecycleViewAdapter(getContext(),
+        dm.widthPixels);
+        customRecycleViewAdapter.setOnItemClikeListen(new CustomRecycleViewAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position, Movie movie) {
+
+            }
+        });
         mRecyclerView.setAdapter(customRecycleViewAdapter);
+
+        return view;
+    }
+
+    @Override
+    public void setPresenter(AllMoviesContract.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showTip(String msg) {
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showAllMovies(ArrayList<Movie> allMovies) {
+        customRecycleViewAdapter.setMovies(allMovies);
     }
 }

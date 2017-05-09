@@ -7,19 +7,17 @@ import com.abben.yunziyuanesr.bean.Movie;
 import java.util.ArrayList;
 
 /**
- * Created by abben on 2017/5/8.
+ * Created by abben on 2017/5/9.
  */
 
-public interface AllMoviesContract {
-
+public interface ChineseMoviesContract {
     interface Presenter extends BasePresenter{
-        /**获取所有的电影*/
-        void subscribeAllMovies();
+        /**获取国产电影*/
+        void subscribeChineseMovies();
     }
 
     interface View extends BaseView<Presenter>{
-
-        /**展示所有电影*/
-        void showAllMovies(ArrayList<Movie> allMovies);
+        /**展示国产电影*/
+        void showChineseMovies(ArrayList<Movie> movies);
     }
 }

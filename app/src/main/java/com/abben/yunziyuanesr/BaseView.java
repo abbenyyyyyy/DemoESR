@@ -1,7 +1,7 @@
 package com.abben.yunziyuanesr;
 
 /**
- * Created by Administrator on 2017/5/8.
+ * Created by abben on 2017/5/8.
  */
 
 public interface BaseView<T> {

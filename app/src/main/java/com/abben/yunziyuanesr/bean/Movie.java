@@ -1,7 +1,7 @@
 package com.abben.yunziyuanesr.bean;
 
 /**
- * Created by Administrator on 2017/5/2.
+ * Created by abben on 2017/5/2.
  */
 
 public class Movie {

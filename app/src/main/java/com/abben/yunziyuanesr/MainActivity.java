@@ -1,7 +1,5 @@
 package com.abben.yunziyuanesr;
 
-import android.os.AsyncTask;
-import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,39 +10,41 @@ import com.abben.yunziyuanesr.fragment.AllMoviesFragment;
 import com.abben.yunziyuanesr.fragment.ChineseMoviesFragment;
 import com.abben.yunziyuanesr.fragment.EuramericanMoviesFragment;
 import com.abben.yunziyuanesr.fragment.JanpanAndKoreaMoviesFragment;
-import com.abben.yunziyuanesr.bean.Movie;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.abben.yunziyuanesr.presenter.AllMoviesPresenter;
+import com.abben.yunziyuanesr.presenter.ChineseMoviesPresenter;
+import com.abben.yunziyuanesr.presenter.EuramericanMoviesPresenter;
+import com.abben.yunziyuanesr.presenter.JanpanAndKoreaMoviesPresenter;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager main_viewpager;
     private TabLayout sliding_tabs;
-    private ArrayList<Movie> allMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String filePath = Environment.getExternalStorageDirectory() + "/Movies.json";
-        new Gsonget().execute(filePath);
-
-
+        initView();
     }
 
     private void initView(){
         main_viewpager = (ViewPager) findViewById(R.id.main_viewpager);
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new AllMoviesFragment());
-        fragments.add(new EuramericanMoviesFragment());
-        fragments.add(new JanpanAndKoreaMoviesFragment());
-        fragments.add(new ChineseMoviesFragment());
+
+        AllMoviesFragment allMoviesFragment = new AllMoviesFragment();
+        new AllMoviesPresenter(allMoviesFragment);
+        fragments.add(allMoviesFragment);
+        EuramericanMoviesFragment euramericanMoviesFragment = new EuramericanMoviesFragment();
+        new EuramericanMoviesPresenter(euramericanMoviesFragment);
+        fragments.add(euramericanMoviesFragment);
+        JanpanAndKoreaMoviesFragment janpanAndKoreaMoviesFragment = new JanpanAndKoreaMoviesFragment();
+        new JanpanAndKoreaMoviesPresenter(janpanAndKoreaMoviesFragment);
+        fragments.add(janpanAndKoreaMoviesFragment);
+        ChineseMoviesFragment chineseMoviesFragment = new ChineseMoviesFragment();
+        new ChineseMoviesPresenter(chineseMoviesFragment);
+        fragments.add(chineseMoviesFragment);
 
         CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(),fragments);
         main_viewpager.setAdapter(customFragmentPagerAdapter);
@@ -52,34 +52,5 @@ public class MainActivity extends AppCompatActivity {
         sliding_tabs = (TabLayout) findViewById(R.id.sliding_tabs);
         sliding_tabs.setupWithViewPager(main_viewpager);
         sliding_tabs.setTabMode(TabLayout.MODE_FIXED);
-    }
-
-    public ArrayList<Movie> getAllMovies(){
-        return allMovies;
-    }
-
-    class Gsonget extends AsyncTask<String,Void,ArrayList<Movie>> {
-
-        @Override
-        protected ArrayList<Movie> doInBackground(String... strings) {
-            Gson gson = new Gson();
-            Reader reader = null;
-            ArrayList<Movie> moverArrayList = null;
-            try {
-
-                reader = new FileReader(strings[0]);
-                moverArrayList = gson.fromJson(reader,new TypeToken<List<Movie>>(){}.getType());
-            } catch (FileNotFoundException e) {
-            }
-            return moverArrayList;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Movie> movers) {
-            if(movers!=null){
-                allMovies = movers;
-                initView();
-            }
-        }
     }
 }

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2017/5/3.
+ * Created by abben on 2017/5/3.
  */
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter{
     private ArrayList<Fragment> mFragments;

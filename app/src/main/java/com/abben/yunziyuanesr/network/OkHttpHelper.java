@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by Administrator on 2017/5/8.
+ * Created by abben on 2017/5/8.
  */
 
 public class OkHttpHelper {

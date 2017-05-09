@@ -13,21 +13,24 @@ import com.abben.yunziyuanesr.bean.Movie;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
- * Created by Administrator on 2017/5/3.
+ * Created by abben on 2017/5/3.
  */
 public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycleViewAdapter.CustomVH>{
 
     private ArrayList<Movie> movies;
     private Context context;
     private int imageViewWidth;
+    private OnItemClickListener mOnItemClickListener;
 
+    public interface OnItemClickListener{
+        void OnItemClick(View view, int position, Movie movie);
+    }
 
-
-    public CustomRecycleViewAdapter(Context context, ArrayList<Movie> movies, int screenWidth){
+    public CustomRecycleViewAdapter(Context context, int screenWidth){
         this.context = context;
-        this.movies = movies;
         this.imageViewWidth = screenWidth / 2 - 20;
     }
 
@@ -38,8 +41,27 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
         return customVH;
     }
 
+    public void setMovies(ArrayList<Movie> movies){
+        this.movies = movies;
+        notifyDataSetChanged();
+    }
+
+    public void setOnItemClikeListen(OnItemClickListener onItemClikeListen){
+        this.mOnItemClickListener = onItemClikeListen;
+    }
+
     @Override
-    public void onBindViewHolder(CustomVH holder, int position) {
+    public void onBindViewHolder(final CustomVH holder, int position) {
+        if(mOnItemClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = holder.getLayoutPosition();
+                    mOnItemClickListener.OnItemClick(view,position,movies.get(position));
+                }
+            });
+        }
+
         final ImageView myImageView = holder.movieCover;
         int imageViewHeight = imageViewWidth * Integer.parseInt(movies.get(position).getImageOfMovieHeight()) /
                 Integer.parseInt(movies.get(position).getImageOfMovieWidth());
@@ -58,7 +80,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return movies == null? 0 : movies.size();
     }
 
     class CustomVH extends RecyclerView.ViewHolder{
