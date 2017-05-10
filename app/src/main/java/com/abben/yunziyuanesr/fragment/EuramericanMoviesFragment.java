@@ -3,6 +3,7 @@ package com.abben.yunziyuanesr.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
  * Created by abben on 2017/5/3.
  */
 
-public class EuramericanMoviesFragment extends Fragment implements EuramericanMoviesContract.View{
+public class EuramericanMoviesFragment extends Fragment implements EuramericanMoviesContract.View,SwipeRefreshLayout.OnRefreshListener{
 
     private EuramericanMoviesContract.Presenter mPresenter;
     private CustomRecycleViewAdapter customRecycleViewAdapter;
+    private SwipeRefreshLayout mSwipeRefresh;
 
     @Nullable
     @Override
@@ -37,7 +39,8 @@ public class EuramericanMoviesFragment extends Fragment implements EuramericanMo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.subscribeEuramericanMovies();
+        showLoading();
+        onRefresh();
     }
 
     @Override
@@ -48,6 +51,8 @@ public class EuramericanMoviesFragment extends Fragment implements EuramericanMo
 
     private View initView(LayoutInflater inflater, ViewGroup container){
         View view = inflater.inflate(R.layout.fragment_first,container,false);
+        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.fragment_swipe_refresh);
+        mSwipeRefresh.setOnRefreshListener(this);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_recyclerview);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -71,12 +76,12 @@ public class EuramericanMoviesFragment extends Fragment implements EuramericanMo
 
     @Override
     public void showLoading() {
-
+        mSwipeRefresh.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-
+        mSwipeRefresh.setRefreshing(false);
     }
 
     @Override
@@ -87,5 +92,11 @@ public class EuramericanMoviesFragment extends Fragment implements EuramericanMo
     @Override
     public void showEuramericanMovies(ArrayList<Movie> movies) {
         customRecycleViewAdapter.setMovies(movies);
+        hideLoading();
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.subscribeEuramericanMovies();
     }
 }

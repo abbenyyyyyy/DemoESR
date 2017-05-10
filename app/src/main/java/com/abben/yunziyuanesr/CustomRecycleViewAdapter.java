@@ -2,9 +2,11 @@ package com.abben.yunziyuanesr;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,7 +15,6 @@ import com.abben.yunziyuanesr.bean.Movie;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by abben on 2017/5/3.
@@ -24,6 +25,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
     private Context context;
     private int imageViewWidth;
     private OnItemClickListener mOnItemClickListener;
+    private final int imagePaddingLeftOrRight = 10;
 
     public interface OnItemClickListener{
         void OnItemClick(View view, int position, Movie movie);
@@ -66,7 +68,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
         int imageViewHeight = imageViewWidth * Integer.parseInt(movies.get(position).getImageOfMovieHeight()) /
                 Integer.parseInt(movies.get(position).getImageOfMovieWidth());
         LinearLayout.LayoutParams imageViewParams = new LinearLayout.LayoutParams(imageViewWidth,imageViewHeight);
-        myImageView.setPadding(10,10,10,10);
+        myImageView.setPadding(imagePaddingLeftOrRight,10,imagePaddingLeftOrRight,10);
         myImageView.setLayoutParams(imageViewParams);
 
         holder.movieName.setText(movies.get(position).getName());
