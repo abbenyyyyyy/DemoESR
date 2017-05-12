@@ -1,7 +1,7 @@
-package com.abben.yunziyuanesr.modle;
+package com.abben.yunziyuanesr.movies.modle;
 
 import com.abben.yunziyuanesr.bean.Movie;
-import com.abben.yunziyuanesr.fragment.MoviesApi;
+import com.abben.yunziyuanesr.movies.fragment.MoviesApi;
 import com.abben.yunziyuanesr.network.RetrofitHelper;
 
 import java.util.ArrayList;
@@ -12,14 +12,14 @@ import io.reactivex.Observable;
  * Created by abben on 2017/5/9.
  */
 
-public class ChineseMoviesModle {
+public class JanpanAndKoreaMoviesModle {
     private MoviesApi moviesApi;
 
-    public ChineseMoviesModle(){
+    public JanpanAndKoreaMoviesModle(){
         moviesApi = RetrofitHelper.getRetrofit().create(MoviesApi.class);
     }
 
-    public Observable<ArrayList<Movie>> getChineseMovies() {
-        return moviesApi.fetchMovies("ChineseMovies");
+    public Observable<ArrayList<Movie>> getJanpanAndKoreaMovies() {
+        return moviesApi.fetchMovies("JanpanAndKoreaMovies");
     }
 }

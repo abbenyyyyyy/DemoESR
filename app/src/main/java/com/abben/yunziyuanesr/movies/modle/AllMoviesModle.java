@@ -1,7 +1,7 @@
-package com.abben.yunziyuanesr.modle;
+package com.abben.yunziyuanesr.movies.modle;
 
 import com.abben.yunziyuanesr.bean.Movie;
-import com.abben.yunziyuanesr.fragment.MoviesApi;
+import com.abben.yunziyuanesr.movies.fragment.MoviesApi;
 import com.abben.yunziyuanesr.network.RetrofitHelper;
 
 import java.util.ArrayList;

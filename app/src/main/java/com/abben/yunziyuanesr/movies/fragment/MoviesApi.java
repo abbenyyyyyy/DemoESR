@@ -1,4 +1,4 @@
-package com.abben.yunziyuanesr.fragment;
+package com.abben.yunziyuanesr.movies.fragment;
 
 import com.abben.yunziyuanesr.bean.Movie;
 

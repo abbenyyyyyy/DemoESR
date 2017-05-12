@@ -1,6 +1,6 @@
-package com.abben.yunziyuanesr.presenter;
+package com.abben.yunziyuanesr.movies.presenter;
 
-import com.abben.yunziyuanesr.BasePresenter;
+import com.abben.yunziyuanesr.movies.BasePresenter;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

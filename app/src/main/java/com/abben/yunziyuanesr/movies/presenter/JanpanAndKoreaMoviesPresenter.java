@@ -1,8 +1,8 @@
-package com.abben.yunziyuanesr.presenter;
+package com.abben.yunziyuanesr.movies.presenter;
 
 import com.abben.yunziyuanesr.bean.Movie;
-import com.abben.yunziyuanesr.contract.EuramericanMoviesContract;
-import com.abben.yunziyuanesr.modle.EuramericanMoviesModle;
+import com.abben.yunziyuanesr.movies.contract.JanpanAndKoreaMoviesContract;
+import com.abben.yunziyuanesr.movies.modle.JanpanAndKoreaMoviesModle;
 
 import java.util.ArrayList;
 
@@ -16,19 +16,19 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Administrator on 2017/5/9.
  */
 
-public class EuramericanMoviesPresenter extends PresenterAdapter implements EuramericanMoviesContract.Presenter{
-    private EuramericanMoviesContract.View mEuramericanMoviesView;
-    private EuramericanMoviesModle mEuramericanMoviesModle;
+public class JanpanAndKoreaMoviesPresenter extends PresenterAdapter implements JanpanAndKoreaMoviesContract.Presenter{
+    private JanpanAndKoreaMoviesContract.View mJanpanAndKoreaMoviesView;
+    private JanpanAndKoreaMoviesModle mJanpanAndKoreaMoviesModle;
 
-    public EuramericanMoviesPresenter(EuramericanMoviesContract.View view){
-        mEuramericanMoviesView = view;
-        mEuramericanMoviesModle = new EuramericanMoviesModle();
-        mEuramericanMoviesView.setPresenter(this);
+    public JanpanAndKoreaMoviesPresenter(JanpanAndKoreaMoviesContract.View view){
+        mJanpanAndKoreaMoviesView = view;
+        mJanpanAndKoreaMoviesModle = new JanpanAndKoreaMoviesModle();
+        mJanpanAndKoreaMoviesView.setPresenter(this);
     }
 
     @Override
-    public void subscribeEuramericanMovies() {
-        mEuramericanMoviesModle.getEuramericanMovies()
+    public void subscribeJanpanAndKoreaMovies() {
+        mJanpanAndKoreaMoviesModle.getJanpanAndKoreaMovies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ArrayList<Movie>>() {
@@ -39,12 +39,12 @@ public class EuramericanMoviesPresenter extends PresenterAdapter implements Eura
 
                     @Override
                     public void onNext(@NonNull ArrayList<Movie> movies) {
-                        mEuramericanMoviesView.showEuramericanMovies(movies);
+                        mJanpanAndKoreaMoviesView.showJanpanAndKoreaMovies(movies);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        mEuramericanMoviesView.showTip(e.toString());
+                        mJanpanAndKoreaMoviesView.showTip(e.toString());
                     }
 
                     @Override

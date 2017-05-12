@@ -1,5 +1,7 @@
-package com.abben.yunziyuanesr.fragment;
+package com.abben.yunziyuanesr.movies.fragment;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +17,12 @@ import android.widget.Toast;
 import com.abben.yunziyuanesr.CustomRecycleViewAdapter;
 import com.abben.yunziyuanesr.R;
 import com.abben.yunziyuanesr.bean.Movie;
-import com.abben.yunziyuanesr.contract.JanpanAndKoreaMoviesContract;
+import com.abben.yunziyuanesr.moviedetail.MovieDetailsActivity;
+import com.abben.yunziyuanesr.movies.contract.JanpanAndKoreaMoviesContract;
 
 import java.util.ArrayList;
+
+import static com.abben.yunziyuanesr.MainActivity.INTENT_MOVIE_FALG;
 
 /**
  * Created by abben on 2017/5/3.
@@ -58,7 +63,12 @@ public class JanpanAndKoreaMoviesFragment extends Fragment implements JanpanAndK
         customRecycleViewAdapter.setOnItemClikeListen(new CustomRecycleViewAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, int position, Movie movie) {
+                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                intent.putExtra(INTENT_MOVIE_FALG,movie);
 
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        getActivity(), view, getString(R.string.transitions_name));
+                startActivity(intent, optionsCompat.toBundle());
             }
         });
         mRecyclerView.setAdapter(customRecycleViewAdapter);

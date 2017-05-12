@@ -1,8 +1,8 @@
-package com.abben.yunziyuanesr.presenter;
+package com.abben.yunziyuanesr.movies.presenter;
 
 import com.abben.yunziyuanesr.bean.Movie;
-import com.abben.yunziyuanesr.contract.ChineseMoviesContract;
-import com.abben.yunziyuanesr.modle.ChineseMoviesModle;
+import com.abben.yunziyuanesr.movies.contract.AllMoviesContract;
+import com.abben.yunziyuanesr.movies.modle.AllMoviesModle;
 
 import java.util.ArrayList;
 
@@ -16,35 +16,35 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Administrator on 2017/5/9.
  */
 
-public class ChineseMoviesPresenter extends PresenterAdapter implements ChineseMoviesContract.Presenter{
-    private ChineseMoviesContract.View mChineseMoviesView;
-    private ChineseMoviesModle mChineseMoviesModle;
+public class AllMoviesPresenter extends PresenterAdapter implements AllMoviesContract.Presenter{
+    private AllMoviesContract.View mAllMoviesView;
+    private AllMoviesModle allMoviesModle;
 
-    public ChineseMoviesPresenter(ChineseMoviesContract.View view){
-        mChineseMoviesView = view;
-        mChineseMoviesModle = new ChineseMoviesModle();
-        mChineseMoviesView.setPresenter(this);
+    public AllMoviesPresenter(AllMoviesContract.View view){
+        mAllMoviesView = view;
+        allMoviesModle = new AllMoviesModle();
+        mAllMoviesView.setPresenter(this);
     }
 
     @Override
-    public void subscribeChineseMovies() {
-        mChineseMoviesModle.getChineseMovies()
+    public void subscribeAllMovies() {
+        allMoviesModle.getAllMovies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ArrayList<Movie>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        mCompositeDisposable.add(d);
+                        addCompositeDisposable(d);
                     }
 
                     @Override
                     public void onNext(@NonNull ArrayList<Movie> movies) {
-                        mChineseMoviesView.showChineseMovies(movies);
+                        mAllMoviesView.showAllMovies(movies);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        mChineseMoviesView.showTip(e.toString());
+                        mAllMoviesView.showTip(e.toString());
                     }
 
                     @Override
@@ -52,5 +52,6 @@ public class ChineseMoviesPresenter extends PresenterAdapter implements ChineseM
 
                     }
                 });
+
     }
 }

@@ -1,10 +1,12 @@
 package com.abben.yunziyuanesr.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by abben on 2017/5/2.
  */
 
-public class Movie {
+public class Movie implements Serializable{
 
     /**
      * type : 国产电影

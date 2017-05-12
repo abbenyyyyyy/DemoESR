@@ -1,7 +1,7 @@
-package com.abben.yunziyuanesr.contract;
+package com.abben.yunziyuanesr.movies.contract;
 
-import com.abben.yunziyuanesr.BasePresenter;
-import com.abben.yunziyuanesr.BaseView;
+import com.abben.yunziyuanesr.movies.BasePresenter;
+import com.abben.yunziyuanesr.movies.BaseView;
 import com.abben.yunziyuanesr.bean.Movie;
 
 import java.util.ArrayList;
