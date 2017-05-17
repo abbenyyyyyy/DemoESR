@@ -1,4 +1,4 @@
-package com.abben.yunziyuanesr.network;
+package com.abben.yunziyuanesr;
 
 import com.abben.yunziyuanesr.bean.UpdateBean;
 
@@ -10,7 +10,7 @@ import retrofit2.http.Url;
  * Created by abben on 2017/5/12.
  */
 
-public interface CustomApi {
+public interface MainActivityApi {
 
     @GET
     Observable<UpdateBean> fetchStringFromUrl(@Url String url);

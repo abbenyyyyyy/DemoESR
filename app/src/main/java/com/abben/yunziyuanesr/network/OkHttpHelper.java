@@ -14,7 +14,7 @@ public class OkHttpHelper {
     /**
      * 连接超时
      */
-    private static final int CONNECT_TIMEOUT = 10;
+    private static final int CONNECT_TIMEOUT = 15;
     /**
      * 读取超时
      */
