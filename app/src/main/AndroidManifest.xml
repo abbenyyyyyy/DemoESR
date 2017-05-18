@@ -3,6 +3,8 @@
     package="com.abben.yunziyuanesr">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 允许写入到SDCard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"

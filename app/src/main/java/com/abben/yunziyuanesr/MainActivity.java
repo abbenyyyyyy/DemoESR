@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.abben.yunziyuanesr.customview.CustomDialog;
 import com.abben.yunziyuanesr.movies.fragment.AllMoviesFragment;
 import com.abben.yunziyuanesr.movies.fragment.ChineseMoviesFragment;
 import com.abben.yunziyuanesr.movies.fragment.EuramericanMoviesFragment;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView{
 
     @Override
     public void setPaesenter(MainActivityPresenter paesenter) {
-
+        mMainActivityPresenter = paesenter;
     }
 
     @Override
@@ -81,8 +83,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityView{
 
     @Override
     public void showDialog() {
-
+        CustomDialog.Builder builder = new CustomDialog.Builder(this);
+        builder.setMessage(getString(R.string.update_message));
+        builder.create().show();
     }
 
-
+    @Override
+    public void showTip(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
+    }
 }

@@ -1,19 +1,27 @@
 package com.abben.yunziyuanesr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.abben.yunziyuanesr.bean.UpdateBean;
+import com.abben.yunziyuanesr.downloadutil.DownLoadManager;
+import com.abben.yunziyuanesr.downloadutil.ProgressListener;
+import com.abben.yunziyuanesr.downloadutil.DownLoadHelper;
 import com.abben.yunziyuanesr.movies.MainActivityModle;
+import com.abben.yunziyuanesr.util.FolderUtil;
+
+import java.io.File;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -51,7 +59,7 @@ public class MainActivityPresenter {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        mMainActivityView.showTip(e.toString());
                     }
 
                     @Override
@@ -68,12 +76,71 @@ public class MainActivityPresenter {
         try {
             int compareResult = getLocalAPPVersion(mMainActivityView.getContext()).compareTo(updateBean.getVersionShort());
             if(compareResult < 0){
-
+                startDownload(updateBean.getInstallUrl());
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private void startDownload(String downloadUrl){
+        Log.i("tag","====下载地址："+downloadUrl);
+        DownLoadHelper helper = DownLoadManager.getInstance().getHelperByTag("xx");
+        if(helper != null){
+            DownLoadManager.getInstance().cancelHelperByTag("xx");
+            return;
+        }
+        String roodir = FolderUtil.getAppCacheDir();
+        if(roodir == null){
+            mMainActivityView.showTip("手机存储空间不足!");
+        }else {
+            final String appFilePath = roodir + File.separator + "yuanziyuanESR.apk";
+            new DownLoadHelper.Builder()
+                    .setPath(appFilePath)
+                    .setTag("yuanziyuanESRApk")
+                    .setUrl(downloadUrl)
+                    .setDownLoadListener(new ProgressListener() {
+                        @Override
+                        public void onStart() {
+                            Log.i("tag", "========开始");
+
+                        }
+
+                        @Override
+                        public void update(long bytesRead, long contentLength, boolean done) {
+                            int read = (int) (bytesRead * 100f / contentLength);
+                            Log.i("tag", "========" + read);
+                        }
+
+                        @Override
+                        public void onCompleted() {
+                            Log.i("tag", "========" + Thread.currentThread().getName());
+                            installApk(appFilePath);
+                        }
+
+                        @Override
+                        public void onError(String err) {
+                            Log.i("tag", "========失败" + err);
+                        }
+                    })
+                    .create()
+                    .execute();
+        }
+    }
+
+    /**发出安装APK的意图给用户*/
+    private void installApk(String appFilePath){
+        File appFile = new File(appFilePath);
+        // 创建URI
+        Uri uri = Uri.fromFile(appFile);
+        // 创建Intent意图
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        // 设置Uri和类型
+        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        // 执行意图进行安装
+        mMainActivityView.getContext().startActivity(intent);
     }
 
     /**
@@ -87,6 +154,7 @@ public class MainActivityPresenter {
 
     public void clearCompositeDisposable(){
         mCompositeDisposable.clear();
+        DownLoadManager.getInstance().unsubscribe();
     }
 
 }

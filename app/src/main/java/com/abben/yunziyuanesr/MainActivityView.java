@@ -14,4 +14,6 @@ public interface MainActivityView {
     void initView();
 
     void showDialog();
+
+    void showTip(String msg);
 }

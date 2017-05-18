@@ -23,4 +23,8 @@ public class RetrofitHelper {
         }
         return retrofit;
     }
+
+    public static String getBaseUrl(){
+        return baseUrl;
+    }
 }
