@@ -14,7 +14,8 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:gravity="center|left"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
 
 
         <ImageView 
@@ -80,9 +81,11 @@
         android:id="@+id/button_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        >
 
-        <!-- "@drawable/bbuton_info_rounded"-->
+
         <Button
             android:id="@+id/positiveButton"
             android:layout_width="0dp"
@@ -91,7 +94,7 @@
             android:textColor="#468BFF"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:singleLine="true" />
+            />
 
         <View
             android:id="@+id/button_middle_line"
@@ -99,7 +102,6 @@
             android:layout_height="match_parent"
             android:background="#D8D9DC"
             />
-        <!-- "@drawable/bbuton_danger_rounded"-->
         <Button
             android:id="@+id/negativeButton"
             android:layout_width="0dp"
@@ -108,7 +110,7 @@
             android:textColor="#468BFF"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:singleLine="true" />
+            />
     </LinearLayout>
 
 </LinearLayout>

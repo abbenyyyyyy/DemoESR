@@ -1,13 +1,17 @@
 package com.abben.yunziyuanesr;
 
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.widget.Toast;
 
+import com.abben.yunziyuanesr.bean.UpdateBean;
 import com.abben.yunziyuanesr.customview.CustomDialog;
 import com.abben.yunziyuanesr.movies.fragment.AllMoviesFragment;
 import com.abben.yunziyuanesr.movies.fragment.ChineseMoviesFragment;
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityView{
     private ViewPager main_viewpager;
     private TabLayout sliding_tabs;
     private MainActivityPresenter mMainActivityPresenter;
+    private final int notifyId = 10086;
+    private NotificationManager mNotificationManager;
+    private NotificationCompat.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +89,49 @@ public class MainActivity extends AppCompatActivity implements MainActivityView{
 
 
     @Override
-    public void showDialog() {
+    public void showDialog(final UpdateBean updateBean) {
         CustomDialog.Builder builder = new CustomDialog.Builder(this);
-        builder.setMessage(getString(R.string.update_message));
+        if(updateBean.getChangelog() != null && !updateBean.getChangelog().equals("")){
+            builder.setMessage(updateBean.getChangelog() + "\n" + getString(R.string.update_message));
+        }else{
+            builder.setMessage(getString(R.string.update_message));
+        }
+        builder.setPositiveButton(R.string.positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mMainActivityPresenter.startDownload(updateBean.getInstallUrl());
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.negative, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
         builder.create().show();
+    }
+
+
+    @Override
+    public void startNotification() {
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        builder = new NotificationCompat.Builder(this);
+        builder.setContentTitle(getString(R.string.downloading));
+        builder.setSmallIcon(R.mipmap.app_icon);
+        builder.setProgress(100, 0, false);
+        mNotificationManager.notify(notifyId, builder.build());
+    }
+
+    @Override
+    public void notification(int progress) {
+        builder.setProgress(100, progress, false);
+        mNotificationManager.notify(notifyId, builder.build());
+    }
+
+    @Override
+    public void cancelNotification() {
+        mNotificationManager.cancel(notifyId);
     }
 
     @Override

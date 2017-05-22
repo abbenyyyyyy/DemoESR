@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.abben.yunziyuanesr.bean.UpdateBean;
 import com.abben.yunziyuanesr.downloadutil.DownLoadManager;
@@ -76,7 +74,7 @@ public class MainActivityPresenter {
         try {
             int compareResult = getLocalAPPVersion(mMainActivityView.getContext()).compareTo(updateBean.getVersionShort());
             if(compareResult < 0){
-                startDownload(updateBean.getInstallUrl());
+                mMainActivityView.showDialog(updateBean);
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -84,8 +82,7 @@ public class MainActivityPresenter {
         return false;
     }
 
-    private void startDownload(String downloadUrl){
-        Log.i("tag","====下载地址："+downloadUrl);
+    public void startDownload(String downloadUrl){
         DownLoadHelper helper = DownLoadManager.getInstance().getHelperByTag("xx");
         if(helper != null){
             DownLoadManager.getInstance().cancelHelperByTag("xx");
@@ -103,31 +100,33 @@ public class MainActivityPresenter {
                     .setDownLoadListener(new ProgressListener() {
                         @Override
                         public void onStart() {
-                            Log.i("tag", "========开始");
-
+                            mMainActivityView.startNotification();
                         }
 
                         @Override
                         public void update(long bytesRead, long contentLength, boolean done) {
                             int read = (int) (bytesRead * 100f / contentLength);
-                            Log.i("tag", "========" + read);
+                            mMainActivityView.notification(read);
                         }
 
                         @Override
                         public void onCompleted() {
-                            Log.i("tag", "========" + Thread.currentThread().getName());
+                            mMainActivityView.cancelNotification();
                             installApk(appFilePath);
                         }
 
                         @Override
                         public void onError(String err) {
-                            Log.i("tag", "========失败" + err);
+                            mMainActivityView.showTip(err);
+                            mMainActivityView.cancelNotification();
                         }
                     })
                     .create()
                     .execute();
         }
     }
+
+
 
     /**发出安装APK的意图给用户*/
     private void installApk(String appFilePath){

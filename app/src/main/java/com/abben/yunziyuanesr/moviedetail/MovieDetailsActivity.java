@@ -41,6 +41,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieDeta
     public void showMovieDetails(Movie movie) {
         Toolbar appbar_layout_toolbar = (Toolbar) findViewById(R.id.appbar_layout_toolbar);
         appbar_layout_toolbar.setTitle(movie.getName());
+        appbar_layout_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         ImageView image_of_movie = (ImageView) findViewById(R.id.image_of_movie);
         Glide.with(this).load(movie.getImageOfMovie()).into(image_of_movie);
         ImageView printscreen = (ImageView) findViewById(R.id.printscreen);
