@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:minWidth="280dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center|start"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+
+
+        <ImageView
+            android:id="@+id/customDialog_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/app_icon" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:textColor="#444444"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/theOtherButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="end"
+            android:maxLines="1"
+            android:textColor="#468BFF"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#D8D9DC" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:minHeight="100dp"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF"
+            android:gravity="center|start"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/middle_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#D8D9DC" />
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="#468BFF"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/button_middle_line"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#D8D9DC" />
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="#468BFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

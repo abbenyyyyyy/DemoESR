@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DataBindingSample</string>
+
+    <string name="transitions_name">simple transition name</string>
+</resources>
