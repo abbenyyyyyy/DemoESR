@@ -18,6 +18,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
+
 /**
  * Created by abben on 2017/5/3.
  */
@@ -77,8 +79,7 @@ public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycle
 
         Glide.with(context)
                 .load(movies.get(position).getImageOfMovie())
-                .fitCenter()
-                .crossFade()
+                .apply(fitCenterTransform())
                 .into(myImageView);
     }
 

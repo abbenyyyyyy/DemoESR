@@ -5,7 +5,7 @@ import android.content.Context;
 import com.abben.mvp_sample.bean.UpdateBean;
 
 /**
- * Created by Shaolin on 2017/5/16.
+ * Created by abben on 2017/5/16.
  */
 
 public interface MainActivityView {

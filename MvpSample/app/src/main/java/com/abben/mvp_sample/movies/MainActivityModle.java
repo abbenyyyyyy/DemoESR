@@ -7,7 +7,7 @@ import com.abben.mvp_sample.network.RetrofitHelper;
 import io.reactivex.Observable;
 
 /**
- * Created by Shaolin on 2017/5/16.
+ * Created by abben on 2017/5/16.
  */
 
 public class MainActivityModle {

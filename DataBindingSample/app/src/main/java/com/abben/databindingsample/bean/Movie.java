@@ -110,6 +110,6 @@ public class Movie implements Serializable {
 
     @BindingAdapter(value = {"url","placeHolder"}, requireAll = false)
     public static void loadImage(ImageView imageView , String url, int placeHolder){
-        Glide.with(imageView.getContext()).load(url).placeholder(placeHolder).into(imageView);
+        Glide.with(imageView.getContext()).load(url).into(imageView);
     }
 }

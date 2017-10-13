@@ -8,7 +8,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
 /**
- * Created by Shaolin on 2017/5/16.
+ * Created by abben on 2017/5/16.
  */
 
 public class RetryWithDelay implements Function<Observable<?extends Throwable>,ObservableSource<?>> {

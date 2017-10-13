@@ -23,7 +23,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by Shaolin on 2017/5/16.
+ * Created by abben on 2017/5/16.
  */
 
 public class MainActivityPresenter {

@@ -3,7 +3,7 @@ package com.abben.mvp_sample.listener;
 import android.view.View;
 
 /**
- * Created by Shaolin on 2017/9/5.
+ * Created by abben on 2017/9/5.
  */
 
 public interface OnItemClickListener<T> {
