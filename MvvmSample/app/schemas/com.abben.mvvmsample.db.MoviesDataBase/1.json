@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d2462fd81cb2fa00a46a326179a5e9ca",
+    "entities": [
+      {
+        "tableName": "movies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type` TEXT, `name` TEXT NOT NULL, `imageOfMovie` TEXT, `summaryOfMovie` TEXT, `printscreen` TEXT, `baiduyun` TEXT, `yunPassword` TEXT, `imageOfMovieHeight` TEXT, `imageOfMovieWidth` TEXT, PRIMARY KEY(`name`))",
+        "fields": [
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageOfMovie",
+            "columnName": "imageOfMovie",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "summaryOfMovie",
+            "columnName": "summaryOfMovie",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "printscreen",
+            "columnName": "printscreen",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "baiduyun",
+            "columnName": "baiduyun",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "yunPassword",
+            "columnName": "yunPassword",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageOfMovieHeight",
+            "columnName": "imageOfMovieHeight",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageOfMovieWidth",
+            "columnName": "imageOfMovieWidth",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_movies_name",
+            "unique": false,
+            "columnNames": [
+              "name"
+            ],
+            "createSql": "CREATE  INDEX `index_movies_name` ON `${TABLE_NAME}` (`name`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d2462fd81cb2fa00a46a326179a5e9ca\")"
+    ]
+  }
+}

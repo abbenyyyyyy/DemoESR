@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.abben.mvvmsample.vo.Resource" />
+
+        <variable
+            name="viewmodle"
+            type="com.abben.mvvmsample.MoviesViewModel" />
+
+        <variable
+            name="repoResource"
+            type="Resource" />
+
+        <variable
+            name="retryCallback"
+            type="com.abben.mvvmsample.ui.common.RetryCallback" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/fragment_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="2"
+                tool:listitem="@layout/item_recycleview" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include
+            layout="@layout/error_state_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:callback="@{() -> retryCallback.retry()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resource="@{repoResource}" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
