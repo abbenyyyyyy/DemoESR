@@ -9,7 +9,7 @@
 
         <variable
             name="viewmodle"
-            type="com.abben.mvvmsample.MoviesViewModel" />
+            type="com.abben.mvvmsample.ui.movies.MoviesViewModel" />
 
         <variable
             name="repoResource"
@@ -17,7 +17,7 @@
 
         <variable
             name="retryCallback"
-            type="com.abben.mvvmsample.ui.common.RetryCallback" />
+            type="com.abben.mvvmsample.common.RetryCallback" />
     </data>
 
     <android.support.constraint.ConstraintLayout

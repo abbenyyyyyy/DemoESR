@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.util;
+package com.abben.mvvmsample.network;
 
 import android.arch.lifecycle.LiveData;
 

@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.movies;
+package com.abben.mvvmsample.ui.movies;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,19 +10,17 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.abben.mvvmsample.MoviesViewModel;
 import com.abben.mvvmsample.R;
 import com.abben.mvvmsample.bean.Movie;
 import com.abben.mvvmsample.databinding.FragmentMoviesBinding;
-import com.abben.mvvmsample.listener.OnItemClickListener;
-import com.abben.mvvmsample.moviedetail.MovieDetailsActivity;
-import com.abben.mvvmsample.movies.adapter.CustomRecycleViewAdapter;
-import com.abben.mvvmsample.ui.common.RetryCallback;
+import com.abben.mvvmsample.common.OnItemClickListener;
+import com.abben.mvvmsample.ui.moviedetail.MovieDetailsActivity;
+import com.abben.mvvmsample.ui.movies.adapter.MoviesRecycleViewAdapter;
+import com.abben.mvvmsample.common.RetryCallback;
 import com.abben.mvvmsample.util.AutoClearedValue;
 import com.abben.mvvmsample.vo.Resource;
 import com.abben.mvvmsample.vo.TypeMovies;
@@ -32,13 +30,22 @@ import java.util.List;
 import static com.abben.mvvmsample.MainActivity.INTENT_MOVIE_FALG;
 
 /**
- * Created by abben on 2017/5/3.
+ * Created by abben on 2017/11/20.
  */
-public class AllMoviesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    private CustomRecycleViewAdapter customRecycleViewAdapter;
+public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+    private static String MOVE_TYPE_KEY = "moveType";
 
+    private MoviesRecycleViewAdapter moviesRecycleViewAdapter;
     private AutoClearedValue<FragmentMoviesBinding> fragmentMoviesBinding;
     private MoviesViewModel moviesViewModel;
+
+    public static MoviesFragment create(@TypeMovies.TypeMoviesAnnotation String moveType){
+        MoviesFragment moviesFragment = new MoviesFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(MOVE_TYPE_KEY,moveType);
+        moviesFragment.setArguments(bundle);
+        return moviesFragment;
+    }
 
     @Nullable
     @Override
@@ -49,28 +56,26 @@ public class AllMoviesFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MoviesViewModel.Factory factory = new MoviesViewModel.Factory(getActivity().getApplication(), TypeMovies.TYPE_ALL_MOVIES);
-        moviesViewModel = ViewModelProviders.of(this, factory).get(MoviesViewModel.class);
+        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        fragmentMoviesBinding.getValue().setRetryCallback(new RetryCallback() {
+            @Override
+            public void retry() {
+                moviesViewModel.retry();
+            }
+        });
+        moviesViewModel.setMoveType(getArguments().getString(MOVE_TYPE_KEY));
         subscribeUi(moviesViewModel);
     }
 
-
     private View initView(final LayoutInflater inflater, ViewGroup container) {
         FragmentMoviesBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies, container, false);
-        dataBinding.setRetryCallback(new RetryCallback() {
-            @Override
-            public void retry() {
-                Log.i("testLog", "retry: ");
-                moviesViewModel.refreshMoviesData();
-            }
-        });
+
         fragmentMoviesBinding = new AutoClearedValue<>(this, dataBinding);
 
         fragmentMoviesBinding.getValue().fragmentSwipeRefresh.setOnRefreshListener(this);
         DisplayMetrics dm = getResources().getDisplayMetrics();
-        customRecycleViewAdapter = new CustomRecycleViewAdapter(getContext(),
-                dm.widthPixels);
-        customRecycleViewAdapter.setOnItemClikeListen(new OnItemClickListener<Movie>() {
+        moviesRecycleViewAdapter = new MoviesRecycleViewAdapter(getContext(), dm.widthPixels);
+        moviesRecycleViewAdapter.setOnItemClikeListen(new OnItemClickListener<Movie>() {
             @Override
             public void onItemClick(Movie movie, View view) {
                 Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
@@ -81,7 +86,7 @@ public class AllMoviesFragment extends Fragment implements SwipeRefreshLayout.On
                 startActivity(intent, optionsCompat.toBundle());
             }
         });
-        fragmentMoviesBinding.getValue().fragmentRecyclerview.setAdapter(customRecycleViewAdapter);
+        fragmentMoviesBinding.getValue().fragmentRecyclerview.setAdapter(moviesRecycleViewAdapter);
 
         return dataBinding.getRoot();
     }
@@ -98,7 +103,7 @@ public class AllMoviesFragment extends Fragment implements SwipeRefreshLayout.On
             public void onChanged(@Nullable Resource<List<Movie>> listResource) {
                 fragmentMoviesBinding.getValue().setRepoResource(listResource);
                 if (listResource != null && listResource.data != null) {
-                    customRecycleViewAdapter.setMovies(listResource.data);
+                    moviesRecycleViewAdapter.setMovies(listResource.data);
                 }
                 fragmentMoviesBinding.getValue().executePendingBindings();
             }
@@ -115,6 +120,6 @@ public class AllMoviesFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh() {
-        moviesViewModel.refreshMoviesData();
+        moviesViewModel.retry();
     }
 }

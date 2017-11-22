@@ -8,14 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.abben.mvvmsample.databinding.ActivityMainBinding;
-import com.abben.mvvmsample.movies.AllMoviesFragment;
-import com.abben.mvvmsample.ui.CustomFragmentPagerAdapter;
+import com.abben.mvvmsample.ui.movies.MoviesFragment;
+import com.abben.mvvmsample.vo.TypeMovies;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public final static String INTENT_MOVIE_FALG = "INTENT_MOVIE_FALG";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Fragment> fragments = new ArrayList<>();
 
-        AllMoviesFragment allMoviesFragment = new AllMoviesFragment();
-        fragments.add(allMoviesFragment);
+        fragments.add(MoviesFragment.create(TypeMovies.TYPE_ALL_MOVIES_ZH));
+        fragments.add(MoviesFragment.create(TypeMovies.TYPE_EURAMERICAN_MOVIES_ZH));
+        fragments.add(MoviesFragment.create(TypeMovies.TYPE_JANPAN_AND_KOREA_MOVIES_ZH));
+        fragments.add(MoviesFragment.create(TypeMovies.TYPE_CHINESE_MOVIES_ZH));
 
         CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         activityMainBinding.mainViewpager.setAdapter(customFragmentPagerAdapter);
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.slidingTabs.setupWithViewPager(activityMainBinding.mainViewpager);
         activityMainBinding.slidingTabs.setTabMode(TabLayout.MODE_FIXED);
         activityMainBinding.slidingTabs.setVisibility(View.VISIBLE);
-
     }
 
 }

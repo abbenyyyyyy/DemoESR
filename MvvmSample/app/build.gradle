@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.abben.mvvmsample"
         minSdkVersion 17
@@ -49,9 +48,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
     implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
     implementation 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.retrofitVersion
-    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-
 
     implementation "android.arch.lifecycle:extensions:" + rootProject.archLifecycleVersion
     annotationProcessor "android.arch.lifecycle:compiler:" + rootProject.archLifecycleVersion

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataBindingSample.iml" filepath="$PROJECT_DIR$/DataBindingSample.iml" />
+      <module fileurl="file://D:\workCode\DemoESR\DataBindingSample\DataBindingSample.iml" filepath="D:\workCode\DemoESR\DataBindingSample\DataBindingSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\workCode\DemoESR\DataBindingSample\app\app.iml" filepath="D:\workCode\DemoESR\DataBindingSample\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -14,10 +14,10 @@ import com.abben.mvvmsample.bean.Movie;
 public abstract class MoviesDataBase extends RoomDatabase {
     private static MoviesDataBase sInstance;
 
-    public static MoviesDataBase getsInstance(Application application, String dbName) {
+    public static MoviesDataBase getsInstance(Application application) {
         if (sInstance == null) {
             synchronized (MoviesDataBase.class) {
-                sInstance = Room.databaseBuilder(application, MoviesDataBase.class, dbName).build();
+                sInstance = Room.databaseBuilder(application, MoviesDataBase.class, "movies.db").build();
             }
         }
         return sInstance;

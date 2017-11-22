@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.moviedetail;
+package com.abben.mvvmsample.ui.moviedetail;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;

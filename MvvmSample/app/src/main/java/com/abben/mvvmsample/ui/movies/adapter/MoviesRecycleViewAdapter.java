@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.movies.adapter;
+package com.abben.mvvmsample.ui.movies.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import com.abben.mvvmsample.R;
 import com.abben.mvvmsample.bean.Movie;
 import com.abben.mvvmsample.databinding.ItemRecycleviewBinding;
-import com.abben.mvvmsample.listener.OnItemClickListener;
+import com.abben.mvvmsample.common.OnItemClickListener;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -22,14 +22,14 @@ import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 /**
  * Created by abben on 2017/5/3.
  */
-public class CustomRecycleViewAdapter extends RecyclerView.Adapter<CustomRecycleViewAdapter.CustomVH> {
+public class MoviesRecycleViewAdapter extends RecyclerView.Adapter<MoviesRecycleViewAdapter.CustomVH> {
 
     private List<Movie> movies;
     private Context context;
     private int imageViewWidth;
     private OnItemClickListener<Movie> mOnItemClickListener;
 
-    public CustomRecycleViewAdapter(Context context, int screenWidth) {
+    public MoviesRecycleViewAdapter(Context context, int screenWidth) {
         this.context = context;
         this.imageViewWidth = screenWidth / 2 - 20;
     }

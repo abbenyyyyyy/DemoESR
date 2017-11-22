@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.repository;
+package com.abben.mvvmsample.common;
 
 
 import android.arch.lifecycle.LiveData;
@@ -8,6 +8,7 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
+import android.util.Log;
 
 import com.abben.mvvmsample.network.ApiResponse;
 import com.abben.mvvmsample.util.Objects;
@@ -32,7 +33,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public abstract class NetworkBoundResource<ResultType, RequestType> {
 
-
     private final MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
 
     @MainThread
@@ -43,6 +43,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         result.addSource(dbSource, new Observer<ResultType>() {
             @Override
             public void onChanged(@Nullable ResultType resultType) {
+                Log.i("testLog", "onChanged: ");
                 result.removeSource(dbSource);
                 if (shouldFetch(resultType)) {
                     fetchFromNetwork(dbSource);
@@ -130,7 +131,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     /**
      * 调用它将API响应的结果保存到数据库中。
      *
-     * @param item
+     * @param item 从网络请求获得的数据
      */
     @WorkerThread
     protected abstract void saveCallResult(@NonNull RequestType item);
@@ -138,8 +139,8 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     /**
      * 调用它来决定是否应该从网络获取数据。
      *
-     * @param data
-     * @return
+     * @param data 旧数据
+     * @return 真就从网络获取数据，假就从数据库获取数据
      */
     @MainThread
     protected abstract boolean shouldFetch(@Nullable ResultType data);
@@ -147,7 +148,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     /**
      * 调用它从数据库获取缓存的数据。
      *
-     * @return
+     * @return 从数据库获得的数据
      */
     @NonNull
     @MainThread
@@ -156,7 +157,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     /**
      * 调用它来创建API调用。
      *
-     * @return
+     * @return 从网络接口获得的数据
      */
     @NonNull
     @MainThread

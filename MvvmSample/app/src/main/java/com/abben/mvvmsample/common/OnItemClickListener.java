@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.listener;
+package com.abben.mvvmsample.common;
 
 import android.view.View;
 

@@ -1,8 +1,10 @@
 package com.abben.mvvmsample.binding;
 
 import android.databinding.BindingAdapter;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 /**
  * Created by abben on 2017/10/27.
@@ -15,8 +17,9 @@ public class BindingApapters {
         view.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    @BindingAdapter("refreshing")
-    public static void isRefreshing(SwipeRefreshLayout swipeRefreshLayout, boolean refreshing){
-        swipeRefreshLayout.setRefreshing(refreshing);
+    @BindingAdapter("imageUrl")
+    public static void bingImage(ImageView imageView, String url){
+        Glide.with(imageView.getContext()).load(url).into(imageView);
     }
+
 }

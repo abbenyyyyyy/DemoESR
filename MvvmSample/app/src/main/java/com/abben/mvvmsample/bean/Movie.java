@@ -14,7 +14,7 @@ import java.io.Serializable;
 /**
  * Created by abben on 2017/5/2.
  */
-@Entity(indices = {@Index("name")}, tableName = "movies")
+@Entity(tableName = "movies")
 public class Movie implements Serializable {
 
     /**

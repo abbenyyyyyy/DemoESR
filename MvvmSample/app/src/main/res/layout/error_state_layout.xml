@@ -14,7 +14,7 @@
 
         <variable
             name="callback"
-            type="com.abben.mvvmsample.ui.common.RetryCallback" />
+            type="com.abben.mvvmsample.common.RetryCallback" />
     </data>
 
     <LinearLayout

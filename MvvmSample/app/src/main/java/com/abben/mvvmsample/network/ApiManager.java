@@ -1,7 +1,5 @@
 package com.abben.mvvmsample.network;
 
-import com.abben.mvvmsample.util.LiveDataCallAdapterFactory;
-
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,6 +13,7 @@ public class ApiManager {
     private static Retrofit retrofit;
 
     private static MoviesApi moviesApi;
+
 
     public static Retrofit getRetrofit(){
         if(retrofit == null){

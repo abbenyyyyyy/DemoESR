@@ -1,4 +1,4 @@
-package com.abben.mvvmsample.ui.common;
+package com.abben.mvvmsample.common;
 
 /**
  * Created by abben on 2017/10/27.
