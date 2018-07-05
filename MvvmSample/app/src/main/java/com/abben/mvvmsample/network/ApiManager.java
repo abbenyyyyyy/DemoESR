@@ -14,8 +14,7 @@ public class ApiManager {
 
     private static MoviesApi moviesApi;
 
-
-    public static Retrofit getRetrofit(){
+    private static Retrofit getRetrofit(){
         if(retrofit == null){
             synchronized (Retrofit.class) {
                 retrofit = new Retrofit.Builder()
