@@ -19,21 +19,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         initView(activityMainBinding);
     }
 
     private void initView(ActivityMainBinding activityMainBinding) {
-
         ArrayList<Fragment> fragments = new ArrayList<>();
-
         fragments.add(MoviesFragment.create(TypeMovies.TYPE_ALL_MOVIES_ZH));
         fragments.add(MoviesFragment.create(TypeMovies.TYPE_EURAMERICAN_MOVIES_ZH));
         fragments.add(MoviesFragment.create(TypeMovies.TYPE_JANPAN_AND_KOREA_MOVIES_ZH));
         fragments.add(MoviesFragment.create(TypeMovies.TYPE_CHINESE_MOVIES_ZH));
 
-        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        CustomFragmentPagerAdapter customFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager()
+                , fragments);
         activityMainBinding.mainViewpager.setAdapter(customFragmentPagerAdapter);
 
         activityMainBinding.slidingTabs.setupWithViewPager(activityMainBinding.mainViewpager);

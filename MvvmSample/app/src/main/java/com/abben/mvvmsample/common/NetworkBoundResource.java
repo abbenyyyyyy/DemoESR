@@ -1,6 +1,5 @@
 package com.abben.mvvmsample.common;
 
-
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Observer;
@@ -43,7 +42,6 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         result.addSource(dbSource, new Observer<ResultType>() {
             @Override
             public void onChanged(@Nullable ResultType resultType) {
-                Log.i("testLog", "onChanged: ");
                 result.removeSource(dbSource);
                 if (shouldFetch(resultType)) {
                     fetchFromNetwork(dbSource);
