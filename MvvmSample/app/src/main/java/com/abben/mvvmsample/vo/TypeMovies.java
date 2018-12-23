@@ -8,7 +8,6 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Created by abben on 2017/10/27.
  */
-
 public class TypeMovies {
 
     public final static String API_TYPE_ALL_MOVIES = "Movies";

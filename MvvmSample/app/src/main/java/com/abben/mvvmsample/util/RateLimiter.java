@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
  * 根据现在离上一次获取数据的时间来决定
  * Created by abben on 2017/10/25.
  */
-
 public class RateLimiter<KEY> {
     private ArrayMap<KEY, Long> timestamps = new ArrayMap<>();
     private final long timeout;

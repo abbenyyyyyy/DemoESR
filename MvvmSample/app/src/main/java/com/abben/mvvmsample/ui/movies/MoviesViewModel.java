@@ -1,13 +1,13 @@
 package com.abben.mvvmsample.ui.movies;
 
 import android.app.Application;
-import android.arch.core.util.Function;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
 
+import com.abben.mvvmsample.base.BaseAndroidViewModel;
 import com.abben.mvvmsample.bean.Movie;
 import com.abben.mvvmsample.db.MoviesDataBase;
 import com.abben.mvvmsample.util.AbsentLiveData;
@@ -18,10 +18,9 @@ import com.abben.mvvmsample.vo.TypeMovies;
 import java.util.List;
 
 /**
- * Created by Shaolin on 2017/10/20.
+ * Created by abben on 2017/10/20.
  */
-
-public class MoviesViewModel extends AndroidViewModel{
+public class MoviesViewModel extends BaseAndroidViewModel {
 
     private final MutableLiveData<String> moveType = new MutableLiveData<>();
 
@@ -34,14 +33,11 @@ public class MoviesViewModel extends AndroidViewModel{
         MoviesDataBase moviesDataBase = MoviesDataBase.getsInstance(application);
         moviesRepository = new MoviesRepository(moviesDataBase);
 
-        mObservableMovies = Transformations.switchMap(moveType, new Function<String, LiveData<Resource<List<Movie>>>>() {
-            @Override
-            public LiveData<Resource<List<Movie>>> apply(String input) {
-                if (input == null) {
-                    return AbsentLiveData.create();
-                } else {
-                    return moviesRepository.getMovies(input);
-                }
+        mObservableMovies = Transformations.switchMap(moveType, input -> {
+            if (input == null) {
+                return AbsentLiveData.create();
+            } else {
+                return moviesRepository.getMovies(input);
             }
         });
     }
@@ -53,7 +49,7 @@ public class MoviesViewModel extends AndroidViewModel{
         this.moveType.setValue(moveType);
     }
 
-    public void retry(){
+    public void retry() {
         if (this.moveType.getValue() != null) {
             this.moveType.setValue(this.moveType.getValue());
         }

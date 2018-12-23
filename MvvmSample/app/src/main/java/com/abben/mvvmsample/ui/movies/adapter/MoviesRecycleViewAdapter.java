@@ -4,15 +4,14 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.abben.mvvmsample.R;
 import com.abben.mvvmsample.bean.Movie;
-import com.abben.mvvmsample.databinding.ItemRecycleviewBinding;
 import com.abben.mvvmsample.common.OnItemClickListener;
+import com.abben.mvvmsample.databinding.ItemRecycleviewBinding;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -53,13 +52,9 @@ public class MoviesRecycleViewAdapter extends RecyclerView.Adapter<MoviesRecycle
     @Override
     public void onBindViewHolder(final CustomVH holder, int position) {
         if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = holder.getAdapterPosition();
-                    mOnItemClickListener.onItemClick(movies.get(position), view);
-                }
-            });
+            holder.itemView.setOnClickListener(view ->
+                    mOnItemClickListener.onItemClick(movies.get(holder.getLayoutPosition()), view)
+            );
         }
 
         holder.binding.setMovie(movies.get(position));

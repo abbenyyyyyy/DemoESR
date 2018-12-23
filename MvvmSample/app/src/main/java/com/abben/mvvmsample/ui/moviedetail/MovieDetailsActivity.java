@@ -17,7 +17,7 @@ import static com.abben.mvvmsample.MainActivity.INTENT_MOVIE_FALG;
 /**
  * Created by abben on 2017/5/10.
  */
-public class MovieDetailsActivity extends AppCompatActivity implements View.OnClickListener{
+public class MovieDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMovieDetailsBinding activityMovieDetailsBinding;
 
     @Override
@@ -30,14 +30,8 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initView(Movie movie) {
-
-        activityMovieDetailsBinding = DataBindingUtil.setContentView(this,R.layout.activity_movie_details);
-        activityMovieDetailsBinding.appbarLayoutToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        activityMovieDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details);
+        activityMovieDetailsBinding.appbarLayoutToolbar.setNavigationOnClickListener(v -> finish());
 
         activityMovieDetailsBinding.linkBaidupan.setOnClickListener(this);
 
@@ -46,9 +40,9 @@ public class MovieDetailsActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.link_baidupan:
-                Intent intent= new Intent();
+                Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
                 Uri content_url = Uri.parse(activityMovieDetailsBinding.getMovie().getBaiduyun());
                 intent.setData(content_url);

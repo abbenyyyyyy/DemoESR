@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient;
 /**
  * Created by abben on 2017/5/8.
  */
-
 public class OkHttpHelper {
     private static OkHttpClient okHttpClient;
 

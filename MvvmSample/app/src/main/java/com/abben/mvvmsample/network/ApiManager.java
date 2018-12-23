@@ -7,7 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by abben on 2017/5/8.
  */
-
 public class ApiManager {
     private static final String BASE_URL = "http://abben-version.oss-cn-shenzhen.aliyuncs.com/";
     private static Retrofit retrofit;

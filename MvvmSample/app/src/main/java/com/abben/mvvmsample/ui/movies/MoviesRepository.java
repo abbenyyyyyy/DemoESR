@@ -18,9 +18,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Shaolin on 2017/11/20.
+ * Created by abben on 2017/11/20.
  */
-
 public class MoviesRepository {
 
     private final MutableLiveData<Boolean> mMoviesRefreshing;

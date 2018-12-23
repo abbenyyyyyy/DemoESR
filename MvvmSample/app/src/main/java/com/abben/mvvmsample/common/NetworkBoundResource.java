@@ -7,7 +7,6 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
-import android.util.Log;
 
 import com.abben.mvvmsample.network.ApiResponse;
 import com.abben.mvvmsample.util.Objects;
@@ -39,20 +38,17 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         result.setValue((Resource<ResultType>) Resource.loading(null));
         final LiveData<ResultType> dbSource = loadFromDb();
         //Note: As of version 1.0, Room uses the list of tables accessed in the query to decide whether to update instances of LiveData.
-        result.addSource(dbSource, new Observer<ResultType>() {
-            @Override
-            public void onChanged(@Nullable ResultType resultType) {
-                result.removeSource(dbSource);
-                if (shouldFetch(resultType)) {
-                    fetchFromNetwork(dbSource);
-                } else {
-                    result.addSource(dbSource, new Observer<ResultType>() {
-                        @Override
-                        public void onChanged(@Nullable ResultType resultType) {
-                            setValue(Resource.success(resultType));
-                        }
-                    });
-                }
+        result.addSource(dbSource, resultType -> {
+            result.removeSource(dbSource);
+            if (shouldFetch(resultType)) {
+                fetchFromNetwork(dbSource);
+            } else {
+                result.addSource(dbSource, new Observer<ResultType>() {
+                    @Override
+                    public void onChanged(@Nullable ResultType resultType) {
+                        setValue(Resource.success(resultType));
+                    }
+                });
             }
         });
     }
