@@ -1,7 +1,7 @@
 package com.abben.mvvmsample.util;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * 一个在View中的值的持有者，如果View被回收，那么解除值的持有

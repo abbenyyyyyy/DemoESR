@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiManager {
     private static final String BASE_URL = "http://abben-version.oss-cn-shenzhen.aliyuncs.com/";
     private static Retrofit retrofit;
-
     private static MoviesApi moviesApi;
 
     private static Retrofit getRetrofit(){

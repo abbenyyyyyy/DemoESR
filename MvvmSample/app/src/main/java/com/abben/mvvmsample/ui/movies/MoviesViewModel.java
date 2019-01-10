@@ -1,11 +1,7 @@
 package com.abben.mvvmsample.ui.movies;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.abben.mvvmsample.base.BaseAndroidViewModel;
 import com.abben.mvvmsample.bean.Movie;
@@ -16,6 +12,10 @@ import com.abben.mvvmsample.vo.Resource;
 import com.abben.mvvmsample.vo.TypeMovies;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 /**
  * Created by abben on 2017/10/20.

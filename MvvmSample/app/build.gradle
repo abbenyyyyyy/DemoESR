@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.abben.mvvmsample"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -33,17 +33,29 @@ android {
 }
 
 dependencies {
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
 
-    implementation 'com.android.support:appcompat-v7:' + rootProject.supportLibVersion
-    implementation 'com.android.support:design:' + rootProject.supportLibVersion
-    implementation 'com.android.support:recyclerview-v7:' + rootProject.supportLibVersion
-    implementation 'com.android.support:cardview-v7:' + rootProject.supportLibVersion
+//    implementation 'com.android.support:appcompat-v7:' + rootProject.supportLibVersion
+//    implementation 'com.android.support:design:' + rootProject.supportLibVersion
+//    implementation 'com.android.support:recyclerview-v7:' + rootProject.supportLibVersion
+//    implementation 'com.android.support:cardview-v7:' + rootProject.supportLibVersion
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+//    implementation "android.arch.lifecycle:extensions:" + rootProject.archLifecycleVersion
+
+//    implementation "android.arch.persistence.room:runtime:" + rootProject.roomVersion
+//    annotationProcessor "android.arch.persistence.room:compiler:" + rootProject.roomVersion
+//    implementation "android.arch.persistence.room:rxjava2:" + rootProject.roomVersion
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+    implementation 'com.google.android.material:material:1.0.0'
 
     implementation("com.github.bumptech.glide:glide:4.7.1") {
         exclude group: "com.android.support"
@@ -59,12 +71,15 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    implementation "android.arch.lifecycle:extensions:" + rootProject.archLifecycleVersion
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
-    implementation "android.arch.persistence.room:runtime:" + rootProject.roomVersion
-    annotationProcessor "android.arch.persistence.room:compiler:" + rootProject.roomVersion
-    implementation "android.arch.persistence.room:rxjava2:" + rootProject.roomVersion
+    implementation "androidx.room:room-runtime:2.1.0-alpha03"
+    annotationProcessor "androidx.room:room-compiler:2.1.0-alpha03"
+    implementation "androidx.room:room-rxjava2:2.1.0-alpha03"
 
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
 //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }

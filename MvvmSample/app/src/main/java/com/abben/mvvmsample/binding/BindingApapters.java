@@ -1,6 +1,7 @@
 package com.abben.mvvmsample.binding;
 
-import android.databinding.BindingAdapter;
+//import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,7 +10,6 @@ import com.bumptech.glide.Glide;
 /**
  * Created by abben on 2017/10/27.
  */
-
 public class BindingApapters {
 
     @BindingAdapter("visibleGone")

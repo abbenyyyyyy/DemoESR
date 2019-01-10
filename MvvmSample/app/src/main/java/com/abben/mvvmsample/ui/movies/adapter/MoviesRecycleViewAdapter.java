@@ -1,8 +1,6 @@
 package com.abben.mvvmsample.ui.movies.adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +13,9 @@ import com.abben.mvvmsample.databinding.ItemRecycleviewBinding;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 

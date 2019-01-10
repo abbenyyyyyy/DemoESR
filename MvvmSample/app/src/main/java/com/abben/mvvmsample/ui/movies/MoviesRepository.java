@@ -1,9 +1,7 @@
 package com.abben.mvvmsample.ui.movies;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.abben.mvvmsample.bean.Movie;
 import com.abben.mvvmsample.common.NetworkBoundResource;
@@ -16,6 +14,9 @@ import com.abben.mvvmsample.vo.TypeMovies;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 /**
  * Created by abben on 2017/11/20.

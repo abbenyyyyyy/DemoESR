@@ -1,17 +1,18 @@
 package com.abben.mvvmsample;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.abben.mvvmsample.databinding.ActivityMainBinding;
 import com.abben.mvvmsample.ui.movies.MoviesFragment;
 import com.abben.mvvmsample.vo.TypeMovies;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
     public final static String INTENT_MOVIE_FALG = "INTENT_MOVIE_FALG";
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initView(activityMainBinding);
     }
 
@@ -38,5 +39,4 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.slidingTabs.setTabMode(TabLayout.MODE_FIXED);
         activityMainBinding.slidingTabs.setVisibility(View.VISIBLE);
     }
-
 }

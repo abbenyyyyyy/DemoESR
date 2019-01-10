@@ -1,10 +1,7 @@
 package com.abben.mvvmsample.ui.movies;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -14,6 +11,10 @@ import com.abben.mvvmsample.databinding.FragmentMoviesBinding;
 import com.abben.mvvmsample.ui.moviedetail.MovieDetailsActivity;
 import com.abben.mvvmsample.ui.movies.adapter.MoviesRecycleViewAdapter;
 import com.abben.mvvmsample.vo.TypeMovies;
+
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import static com.abben.mvvmsample.MainActivity.INTENT_MOVIE_FALG;
 

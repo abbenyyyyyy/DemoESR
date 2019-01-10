@@ -1,11 +1,10 @@
 package com.abben.mvvmsample.network;
 
-import android.arch.lifecycle.LiveData;
-
 import com.abben.mvvmsample.bean.Movie;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 

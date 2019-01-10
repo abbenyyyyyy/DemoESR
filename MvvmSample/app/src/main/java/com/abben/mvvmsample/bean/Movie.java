@@ -1,15 +1,11 @@
 package com.abben.mvvmsample.bean;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.databinding.BindingAdapter;
-import android.support.annotation.NonNull;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by abben on 2017/5/2.
@@ -33,7 +29,7 @@ public class Movie implements Serializable {
 
     @NonNull
     @PrimaryKey
-    private String name;
+    private String name="";
     private String imageOfMovie;
     private String summaryOfMovie;
     private String printscreen;

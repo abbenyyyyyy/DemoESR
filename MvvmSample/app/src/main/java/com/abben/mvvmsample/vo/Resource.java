@@ -1,7 +1,7 @@
 package com.abben.mvvmsample.vo;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static com.abben.mvvmsample.vo.Status.ERROR;
 import static com.abben.mvvmsample.vo.Status.LOADING;

@@ -1,9 +1,10 @@
 package com.abben.mvvmsample.util;
 
 import android.os.SystemClock;
-import android.support.v4.util.ArrayMap;
 
 import java.util.concurrent.TimeUnit;
+
+import androidx.collection.ArrayMap;
 
 /**
  * 决定是否应该获取一些数据的Utility类

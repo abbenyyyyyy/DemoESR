@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c3ad4e5353c7bd36ff581243e94d2982",
+    "identityHash": "c08697c08e45aae2ebb23cf097eebc3c",
     "entities": [
       {
         "tableName": "movies",
@@ -73,9 +73,10 @@
         "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c3ad4e5353c7bd36ff581243e94d2982\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c08697c08e45aae2ebb23cf097eebc3c\")"
     ]
   }
 }
