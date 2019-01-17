@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">mvvmsample</string>
+
+    <string name="transitions_name">simple transition name</string>
+    <string name="retry">重试</string>
+    <string name="unknown_error">未知错误</string>
+</resources>
