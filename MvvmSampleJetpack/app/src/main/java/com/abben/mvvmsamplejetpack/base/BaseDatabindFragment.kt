@@ -18,7 +18,6 @@ abstract class BaseDatabindFragment<T : ViewDataBinding> : Fragment(), View.OnCl
     protected var compositeDisposable: CompositeDisposable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        super.onCreateView(inflater, container, savedInstanceState)
         compositeDisposable = CompositeDisposable()
         viewBinding = DataBindingUtil.inflate(inflater, getContentViewId(), container, false)
         return viewBinding.root

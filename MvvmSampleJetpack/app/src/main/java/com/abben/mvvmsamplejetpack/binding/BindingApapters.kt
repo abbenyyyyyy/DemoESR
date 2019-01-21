@@ -11,16 +11,17 @@ import com.bumptech.glide.Glide
  *  @author abben
  *  on 2019/1/17
  */
-class BindingApapters {
 
-    @BindingAdapter("visibleGone")
-    fun View.showHide(show: Boolean) {
-        visibility = if (show) VISIBLE else GONE
-    }
-
-    @BindingAdapter("imageUrl")
-    fun ImageView.bingImage(url: String) {
-        Glide.with(context).load(url).into(this)
-    }
-
+@BindingAdapter("visibleGone")
+fun View.showHide(show: Boolean) {
+    visibility = if (show) VISIBLE else GONE
 }
+
+@BindingAdapter("imageUrl")
+fun ImageView.bingImage(url: String) {
+    Glide.with(context).load(url).into(this)
+}
+
+
+
+

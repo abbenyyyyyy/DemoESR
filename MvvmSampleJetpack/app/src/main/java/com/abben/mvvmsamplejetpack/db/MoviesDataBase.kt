@@ -1,9 +1,11 @@
 package com.abben.mvvmsamplejetpack.db
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.abben.mvvmsamplejetpack.bean.Movie
 
 /**
@@ -14,13 +16,18 @@ import com.abben.mvvmsamplejetpack.bean.Movie
 abstract class MoviesDataBase : RoomDatabase() {
 
     companion object {
+        @Volatile
         private var sInstance: MoviesDataBase? = null
 
         fun getsInstance(application: Application): MoviesDataBase {
-            if (sInstance == null) {
-                sInstance = Room.databaseBuilder(application, MoviesDataBase::class.java, "movies.db").build()
+            return sInstance ?: synchronized(this) {
+                sInstance ?: buildDatabase(application).also { sInstance = it }
             }
-            return sInstance!!
+        }
+
+        private fun buildDatabase(context: Context): MoviesDataBase {
+            return Room.databaseBuilder(context, MoviesDataBase::class.java, "222movies.db")
+                .build()
         }
     }
 

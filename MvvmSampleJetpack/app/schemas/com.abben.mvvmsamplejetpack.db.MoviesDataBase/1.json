@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6d15c25024d4788428ab87987299fcca",
+    "entities": [
+      {
+        "tableName": "movies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `type` TEXT NOT NULL, `imageOfMovie` TEXT NOT NULL, `summaryOfMovie` TEXT NOT NULL, `printscreen` TEXT NOT NULL, `baiduyun` TEXT NOT NULL, `yunPassword` TEXT NOT NULL, `imageOfMovieHeight` TEXT NOT NULL, `imageOfMovieWidth` TEXT NOT NULL, PRIMARY KEY(`name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageOfMovie",
+            "columnName": "imageOfMovie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "summaryOfMovie",
+            "columnName": "summaryOfMovie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "printscreen",
+            "columnName": "printscreen",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baiduyun",
+            "columnName": "baiduyun",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "yunPassword",
+            "columnName": "yunPassword",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageOfMovieHeight",
+            "columnName": "imageOfMovieHeight",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageOfMovieWidth",
+            "columnName": "imageOfMovieWidth",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6d15c25024d4788428ab87987299fcca\")"
+    ]
+  }
+}
