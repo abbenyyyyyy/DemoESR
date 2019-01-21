@@ -19,3 +19,7 @@ DataBinding的使用示例。
 
 - 项目结构参考[Google Guide to App Architecture](https://developer.android.google.cn/topic/libraries/architecture/guide.html)
 与[Google Github Browser Sample with Android Architecture Components](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample)
+
+### MvvmSampleJetpack
+
+上面的MvvmSample项目的Kotlin实现
